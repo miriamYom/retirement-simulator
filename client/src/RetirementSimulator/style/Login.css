@@ -1,0 +1,42 @@
+.login-modal {
+    text-align: center;
+    /* width: 400px !important; */
+    /* right: calc((100%-450px)/2);       */
+    /* margin-left:calc((100%)/2);  */
+}
+
+.login-body {
+    display: grid;
+    grid-template-columns: auto;
+}
+
+.login-connect {
+    background: #457FF0;
+    border-radius: 3.37792px;
+}
+
+.login-input {
+    text-align: right;
+    width: 380px;
+    margin: 5px;
+    border: #457FF0;
+}
+
+.mail-icom {
+    background: url('../../img/mail.png') no-repeat;
+}
+
+.lock-icom {
+    background: url('../../img/lock.png') no-repeat;
+}
+
+.btn-close {
+    background-color: white;
+    border: none;
+    width: 10px;
+    left: 0px;
+}
+
+.login-img {
+    width: 400px;
+}

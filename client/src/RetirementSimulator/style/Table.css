@@ -1,0 +1,73 @@
+.table {
+    width: 35% !important;
+}
+
+.table-head {
+    background: #F1F3FF;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-size: 13px;
+    line-height: 11px;
+    text-align: center;
+    color: #000000;
+}
+
+.table-row {
+    box-sizing: border-box;
+    border-width: 0.630158px 0px;
+    border-style: solid;
+    border-color: #DCDFE3;
+}
+
+.form-control {
+    border: none !important;
+}
+
+.add-row {
+    width: 35px;
+    height: 35px;
+    background: #457FF0;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 17.5px;
+    border: none;
+    color: #f4f5f8;
+}
+
+.remove-row {
+    background-color: #DCDFE3;
+    border: none;
+}
+
+.tbl {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.p1-pg4 {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 21px;
+    text-align: center;
+    color: #000000;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.p2-pg4 {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 200;
+    font-size: 12px;
+    line-height: 19px;
+    text-align: center;
+    color: #000000;
+}
+
+.input-pg4 {
+    padding: 0px;
+    width: 220px;
+    height: 31px;
+    text-align: center;
+}

@@ -1,0 +1,137 @@
+/* npm rebuild node-sass */
+
+/* https://www.figma.com/file/SH63MIDtSAxnwoc3CGtNqP/%D7%A8%D7%95%D7%90%D7%94-%D7%97%D7%A9%D7%91%D7%95%D7%9F-%D7%9E%D7%99%D7%9B%D7%9C-%D7%9C%D7%95%D7%99-%7C%D7%A1%D7%99%D7%9E%D7%95%D7%9C%D7%98%D7%95%D7%A8-%D7%A4%D7%A8%D7%99%D7%A9%D7%94-%D7%A0%D7%A1%D7%99%D7%95%D7%9F-3?type=design&node-id=168-191
+ */
+
+.header {
+    /* הידר */
+    position: sticky;
+    width: 100%;
+    height: 65px;
+    left: 0px;
+    top: 0px;
+    background: #457FF0;
+    box-shadow: 0px -1px 19px rgba(0, 0, 0, 0.11);
+    z-index: 20;
+}
+
+
+.logo-header {
+    /* לבן לוגו מיכל לוי (1) 2 */
+    position: absolute;
+    right: 30px;
+    top: 10px;
+}
+
+.click-to-home-web {
+    /* מעבר לאתר הבית */
+    width: 118px;
+    height: 19px;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    text-align: right;
+    color: #FFFFFF;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    text-decoration: none;
+    z-index: 2;
+}
+
+.click-to-home-web:hover {
+    text-decoration: none;
+}
+
+.frame39 {
+    /* Frame 39 */
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 6.27386px 18.1996px;
+    gap: 7px;
+    position: absolute;
+    width: 154.4px;
+    height: 31.55px;
+    left: calc(50% - 154.4px/2 + 4.2px);
+    top: 16px;
+    background: #3678CE;
+    border-radius: 3.49992px;
+    z-index: 1;
+}
+
+.group-289327 {
+    /* Group 289327 */
+    position: absolute;
+    width: 120px;
+    height: 100%;
+    left: 30px;
+}
+
+.vector-phone {
+    position: absolute;
+    left: 75px;
+    top: 22px;
+}
+
+.contact-us {
+    /* צור קשר */
+    position: absolute;
+    left: 0%;
+    top: 22px;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: left;
+
+    color: #FFFFFF;
+}
+
+.line11 {
+    /* Line 11 */
+    position: absolute;
+    width: 0px;
+    height: 25px;
+    left: 150px;
+    top: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.group-289328 {
+    /* Group 289328 */
+    position: absolute;
+    width: 100px;
+    height: 100%;
+    left: 180px;
+}
+
+.welcome {
+    /* שלום דוד */
+    position: absolute;
+    left: 0%;
+    top: 22px;
+
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: left;
+
+    color: #FFFFFF;
+}
+
+.personIcon {
+    /* Vector */
+    position: absolute;
+    left: 100px;
+    top: 22px;
+}

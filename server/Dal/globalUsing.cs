@@ -1,0 +1,9 @@
+﻿global using MongoDB.Bson;
+global using MongoDB.Bson.Serialization;
+global using MongoDB.Driver;
+global using MongoDB.Bson.Serialization.Attributes;
+global using System.Diagnostics;
+global using DL.DataImplements;
+global using DL.DalApi;
+global using DL.DataObjects;
+global using System.Data;
