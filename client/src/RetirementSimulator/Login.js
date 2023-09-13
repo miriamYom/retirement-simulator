@@ -18,11 +18,12 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from "yup";
 import { userLogin } from "../redux/actions/userAction";
 import { useSelector, useDispatch } from "react-redux";
-
+import { setTokens} from "./TokenService";
+import { userUrl } from './endpoints';
 function Login() {
+    const userUrl = "http://localhost:5170/RetirementSimulator/"
     const dispatch = useDispatch();
     let user = useSelector((state) => state.userReducer);
-
     const navigate = useNavigate();
     const [centredModal, setCentredModal] = useState(false);
     const [email, setEmail] = useState("");
@@ -46,16 +47,9 @@ function Login() {
         resolver: yupResolver(schema),
     });
 
-    const navigetToCurrentPage = () => {
-        console.log(user.role);
-        //הבדיקה הזאת צריכה להיות בשרת
-        user.role == "Admin" || user.role == "admin" ?
-            navigate("Admin") :
-            navigate("PensionType");
-    }
 
     const onSubmitHandler = (data) => {
-        axios.post('http://localhost:5170/RentiermentSimulator/Login?email=' + data.email, '"' + data.password + '"', {
+        axios.post(userUrl+'Login?email=' + data.email, '"' + data.password + '"', {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -64,13 +58,13 @@ function Login() {
                 if (response.status >= 200 && response.status < 300) {
                     if (response.data != "") {
                         try {
-                            dispatch(userLogin(response.data));
+                            dispatch(userLogin(response.data.user));
+                            setTokens(response.data.token);
                             navigate("/PensionType");
                         }
                         catch (e) {
                             console.log(e);
                         }
-                        navigetToCurrentPage();
                     }
                     else {
                         {document.getElementById('errorMassege').hidden = false}

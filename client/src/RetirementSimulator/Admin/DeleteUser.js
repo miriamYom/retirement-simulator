@@ -3,8 +3,13 @@ import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
+import { getToken } from "../TokenService.js";
+import { adminUrl } from '../endpoints.js';
+
 
 function DeleteUser() {
+    const adminUrl = "http://localhost:5170/RetirementSimulator/"
+
     const schema = yup.object().shape({
         name: yup.string().default(""),
         role: yup.string().default(""),
@@ -22,7 +27,10 @@ function DeleteUser() {
         console.log(data);
         // axios.get("https://api.url.com", {headers: {'Content-Type': 'application/json'} })
         // , {headers: {'Content-Type': 'application/json'} }
-        axios.delete('http://localhost:5170/RentiermentSimulator/DeleteUser', data)
+        var config = {
+            headers: { Authorization: `Bearer ${getToken()}` }
+        };
+        axios.delete(`${adminUrl}DeleteUser`, data, config)
             .then(response => {
                 console.log(response.data);
             })

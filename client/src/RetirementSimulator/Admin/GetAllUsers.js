@@ -3,18 +3,24 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getToken } from "../TokenService.js";
+import { adminUrl } from '../endpoints.js';
 
 export default function GetAllUsers() {
 
     // const allUsers = useRef();
     const [allUsers,setallUsers] = useState();
     const navigate = useNavigate();
+    const adminUrl = "http://localhost:5170/RetirementSimulator/"
 
 
     const [flag, setflag] = useState(false);
     function getAll() {
         setflag(true);
-        axios.get('http://localhost:5170/RentiermentSimulator/GetAll')
+        var config = {
+            headers: { Authorization: `Bearer ${getToken()}` }
+        };
+        axios.get(`${adminUrl}GetAll`, config)
             .then((response) => {
                 setallUsers(response.data);
                 console.log(allUsers);

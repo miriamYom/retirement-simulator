@@ -4,8 +4,13 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { useState } from 'react';
+import { getToken } from "../TokenService.js";
+import { adminUrl } from '../endpoints.js';
+
 
 function GetUser() {
+    const adminUrl = "http://localhost:5170/RetirementSimulator/"
+
     let [user, setUser] = useState({});
 
     const schema = yup.object().shape({
@@ -23,7 +28,10 @@ function GetUser() {
 
     const onSubmit = (data) => {
         console.log(user);
-        axios.post('http://localhost:5170/RentiermentSimulator/GetDetails', data ,)
+        var config = {
+            headers: { Authorization: `Bearer ${getToken()}` }
+        };
+        axios.post(`${adminUrl}GetDetails`, data ,config)
             .then(response => {
                 setUser(response.data);
                 console.log(user);

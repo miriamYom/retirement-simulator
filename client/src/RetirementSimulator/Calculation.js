@@ -2,20 +2,24 @@ import { useEffect, useRef, useState } from "react";
 import axios from 'axios';
 import { useSelector, useDispatch } from "react-redux";
 import { removePensionType } from "../redux/actions/employeeAction";
-
+import { getToken } from "./TokenService.js";
+import { userUrl } from "./endpoints";
 function Calculation() {
     const dispatch = useDispatch();
-
     let [result, setResult] = useState({});
     let employeeDetails = useSelector((state) => state.employeeReducer);
     let [pensionType, setpensionType] = useState("BudgetPension");
+    const userUrl = "http://localhost:5170/RetirementSimulator/"
 
     useEffect(() => {
         dispatch(removePensionType());
         console.log(pensionType);
         console.log(employeeDetails);
-        axios.post(`http://localhost:5170/RentiermentSimulator/GetPensionCalculates?pensionType=${pensionType}`,
-            employeeDetails)
+        var config = {
+            headers: { Authorization: `Bearer ${getToken()}` }
+        };
+        axios.post(`${userUrl}GetPensionCalculates?pensionType=${pensionType}`,
+            employeeDetails, config)
             .then(response => setResult((response.data)))
             .catch(error => console.error('There was an error!\n', error))
             .catch(setResult({ "error": "someErrorIsHandle" }))

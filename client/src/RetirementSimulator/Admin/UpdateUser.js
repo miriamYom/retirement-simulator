@@ -3,10 +3,11 @@ import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
+import { getToken } from "../TokenService.js";
+import { adminUrl } from '../endpoints.js';
 
 function UpdateUser() {
-
-
+    const adminUrl = "http://localhost:5170/RetirementSimulator/"
     const schema = yup.object().shape({
         name: yup.string().default(""),
         role: yup.string().default(""),
@@ -42,7 +43,10 @@ function UpdateUser() {
         data2.phoneNumber = "";
         data2.role = "";
         data2.password = "";
-        axios.post('http://localhost:5170/RentiermentSimulator/UpdateUser', [data2, data])
+        var config = {
+            headers: { Authorization: `Bearer ${getToken()}` }
+        };
+        axios.post(`${adminUrl}UpdateUser`, [data2, data], config)
             .then(response => console.log(response.data))
             .then(alert("good"))
             // .catch(error => console.log(error));

@@ -6,7 +6,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './RetirementSimulator/Header';
 import GeneralData from "./RetirementSimulator/GeneralData";
-import PensionType from "./RetirementSimulator/PensionType";
+import PensionType from "./RetirementSimulator/‏‏PensionType"
 import Details from "./RetirementSimulator/Details";
 import PartTimeJob from "./RetirementSimulator/PartTimeJob";
 import Calculation from "./RetirementSimulator/Calculation";
