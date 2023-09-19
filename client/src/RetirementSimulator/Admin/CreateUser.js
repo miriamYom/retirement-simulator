@@ -8,7 +8,7 @@ import { adminUrl } from '../endpoints.js';
 
 
 function CreateUser() {
-    const adminUrl = "http://localhost:5170/RetirementSimulator/"
+    const adminUrl = "http://localhost:5170/Admin/"
 
     const schema = yup.object().shape({
         name: yup.string().required(),

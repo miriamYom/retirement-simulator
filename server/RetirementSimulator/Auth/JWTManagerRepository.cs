@@ -28,17 +28,58 @@ namespace BL.Auth
             return user;
         }
 
-        public Tokens GenerateToken(string userName)
+        //public Tokens GenerateToken(string userName)
+        //{
+        //    return GenerateJWTTokens(userName);
+        //}
+
+        //public Tokens GenerateRefreshToken(string username)
+        //{
+        //    return GenerateJWTTokens(username);
+        //}
+
+        public Tokens GenerateAdminRefreshToken(UserDTO adminsData)
         {
-            return GenerateJWTTokens(userName);
+            return GenerateJWTAdminTokens(adminsData);
         }
 
-        public Tokens GenerateRefreshToken(string username)
+        public Tokens GenerateUserRefreshToken(string email)
         {
-            return GenerateJWTTokens(username);
+            return GenerateJWTUserTokens(email);
         }
 
-        public Tokens GenerateJWTTokens(string email)
+        //public Tokens GenerateJWTTokens(string email)
+        //{
+        //    try
+        //    {
+        //        var tokenHandler = new JwtSecurityTokenHandler();
+        //        var tokenKey = Encoding.UTF8.GetBytes(iconfiguration["JWT:Key"]);
+        //        var tokenDescriptor = new SecurityTokenDescriptor
+        //        {
+        //            Subject = new ClaimsIdentity(new Claim[]
+        //          {
+        //         new Claim(ClaimTypes.Name, email)
+        //          }),
+        //            Expires = DateTime.Now.AddMinutes(1),
+        //            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
+        //        };
+        //        var token = tokenHandler.CreateToken(tokenDescriptor);
+        //        var refreshToken = GenerateRefreshToken();
+        //        return new Tokens { Token = tokenHandler.WriteToken(token), RefreshToken = refreshToken };
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return null;
+        //    }
+        //}
+
+
+        public Tokens GenerateUserToken(string email)
+        {
+            return GenerateJWTUserTokens(email);
+        }
+
+        public Tokens GenerateJWTUserTokens(string email)
         {
             try
             {
@@ -48,20 +89,56 @@ namespace BL.Auth
                 {
                     Subject = new ClaimsIdentity(new Claim[]
                   {
-                 new Claim(ClaimTypes.Name, email)
+                    //new Claim("mongoId", user.Id),
+                    new Claim(ClaimTypes.Email, email),
+                    new Claim(ClaimTypes.Role, "User"),
                   }),
-                    Expires = DateTime.Now.AddMinutes(1),
+                    Expires = DateTime.Now.AddMinutes(100),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
                 };
                 var token = tokenHandler.CreateToken(tokenDescriptor);
                 var refreshToken = GenerateRefreshToken();
                 return new Tokens { Token = tokenHandler.WriteToken(token), RefreshToken = refreshToken };
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
         }
+
+
+        public Tokens GenerateAdminToken(UserDTO adminsData)
+        {
+            return GenerateJWTAdminTokens(adminsData);
+        }
+
+        public Tokens GenerateJWTAdminTokens(UserDTO admin)
+        {
+            try
+            {
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var tokenKey = Encoding.UTF8.GetBytes(iconfiguration["JWT:Key"]);
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(new Claim[]
+                  {
+                    new Claim("mongoId", admin.Id),
+                    new Claim(ClaimTypes.Email, admin.Email),
+                    new Claim(ClaimTypes.Role, "Admin"),
+                  }),
+                    Expires = DateTime.Now.AddMinutes(100),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
+                };
+                var token = tokenHandler.CreateToken(tokenDescriptor);
+                var refreshToken = GenerateRefreshToken();
+                return new Tokens { Token = tokenHandler.WriteToken(token), RefreshToken = refreshToken };
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
 
         public string GenerateRefreshToken()
         {
@@ -98,6 +175,7 @@ namespace BL.Auth
 
             return principal;
         }
+
     }
 
 }

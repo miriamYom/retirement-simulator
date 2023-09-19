@@ -9,7 +9,7 @@ import { adminUrl } from '../endpoints.js';
 
 
 function GetUser() {
-    const adminUrl = "http://localhost:5170/RetirementSimulator/"
+    const adminUrl = "http://localhost:5170/Admin/"
 
     let [user, setUser] = useState({});
 

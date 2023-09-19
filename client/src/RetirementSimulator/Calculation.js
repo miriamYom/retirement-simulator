@@ -9,7 +9,7 @@ function Calculation() {
     let [result, setResult] = useState({});
     let employeeDetails = useSelector((state) => state.employeeReducer);
     let [pensionType, setpensionType] = useState("BudgetPension");
-    const userUrl = "http://localhost:5170/RetirementSimulator/"
+    const userUrl = "http://localhost:5170/user"
 
     useEffect(() => {
         dispatch(removePensionType());

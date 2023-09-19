@@ -21,7 +21,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setTokens} from "./TokenService";
 import { userUrl } from './endpoints';
 function Login() {
-    const userUrl = "http://localhost:5170/RetirementSimulator/"
+    const userUrl = "http://localhost:5170/user/"
     const dispatch = useDispatch();
     let user = useSelector((state) => state.userReducer);
     const navigate = useNavigate();

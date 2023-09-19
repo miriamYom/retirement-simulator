@@ -96,7 +96,7 @@ public class UserServiceBL : IUserServiceBL
             User theUser = userService.GetAsync(filter).Result;
             if (Auth.VerifyPassword(pas, theUser.Password))
             {
-                if (theUser.SubscriptionPeriodDate <= DateTime.Now)
+                if (theUser.SubscriptionPeriodDate >= DateTime.Now)
                 {
                     return userMapper.Map<UserDTO>(theUser);
                 }

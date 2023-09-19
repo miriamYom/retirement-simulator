@@ -7,7 +7,7 @@ import { getToken } from "../TokenService.js";
 import { adminUrl } from '../endpoints.js';
 
 function UpdateUser() {
-    const adminUrl = "http://localhost:5170/RetirementSimulator/"
+    const adminUrl = "http://localhost:5170/Admin/"
     const schema = yup.object().shape({
         name: yup.string().default(""),
         role: yup.string().default(""),
