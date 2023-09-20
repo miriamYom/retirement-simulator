@@ -12,14 +12,21 @@ namespace UI.Controllers
     [Authorize(Roles = "Admin")]
     [ApiController]
     [Route("api/[controller]")]
-    public class AdminController : UserController
+    public class AdminController : ControllerBase
     {
         private readonly IUserServiceBL userServiceBL;
         //private readonly IPensionFactory pensionFactory;
         private readonly IJWTManagerRepository jWTManager;
         private readonly ITokenServiceBL tokenService;
 
-        public AdminController(IUserServiceBL userServiceBL, IJWTManagerRepository jWTManager, ITokenServiceBL tokenService) : base(userServiceBL, jWTManager, tokenService)
+        //public AdminController(IUserServiceBL userServiceBL, IJWTManagerRepository jWTManager, ITokenServiceBL tokenService) : base(userServiceBL, jWTManager, tokenService)
+        //{
+        //    this.userServiceBL = userServiceBL;
+        //    this.jWTManager = jWTManager;
+        //    this.tokenService = tokenService;
+        //}
+
+        public AdminController(IUserServiceBL userServiceBL, IJWTManagerRepository jWTManager, ITokenServiceBL tokenService) 
         {
             this.userServiceBL = userServiceBL;
             this.jWTManager = jWTManager;
@@ -58,18 +65,24 @@ namespace UI.Controllers
             return Ok(new { token = token, user = validAdmin });
         }
 
+
+        [AllowAnonymous]
         [HttpGet("GetAll")]
         public List<UserDTO> GetAll()
         {
             return userServiceBL.GetAllAsync().Result;
         }
 
+
+        [AllowAnonymous]
         [HttpPost("GetDetails")]
         public UserDTO GetDetails(UserDTO user)
         {
             return userServiceBL.GetAsync(user).Result;
         }
 
+
+        [AllowAnonymous]
         [HttpPost("CreateUser")]
         public bool CreateUser([FromBody] UserDTO user)
         {
@@ -83,12 +96,15 @@ namespace UI.Controllers
             }
         }
 
+
+        [AllowAnonymous]
         [HttpDelete("DeleteUser")]
         public bool DeleteUser(UserDTO user)
         {
             return userServiceBL.DeleteAsync(user).Result;
         }
 
+        [AllowAnonymous]
         [HttpPut("Update")]
         public bool UpdateUser(params UserDTO[] user)
         {

@@ -11,7 +11,7 @@ export default function GetAllUsers() {
     // const allUsers = useRef();
     const [allUsers,setallUsers] = useState();
     const navigate = useNavigate();
-    const adminUrl = "http://localhost:5170/Admin/"
+    const adminUrl = "http://localhost:5170/api/Admin/"
 
 
     const [flag, setflag] = useState(false);

@@ -8,7 +8,7 @@ import { adminUrl } from '../endpoints.js';
 
 
 function DeleteUser() {
-    const adminUrl = "http://localhost:5170/Admin/"
+    const adminUrl = "http://localhost:5170/api/Admin/"
 
     const schema = yup.object().shape({
         name: yup.string().default(""),
