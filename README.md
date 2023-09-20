@@ -1,5 +1,5 @@
 # RetirementSimulator
-The project was written for the CPU Michal Levy (https://michallcpa.co.il/) by Miriam Yontovian & Yehudit Shraga.
+The project was written for the CPU Michal Levy (https://michallcpa.co.il/) by Miriam Yontovian, Yehudit Shraga and Pessi Margalit.
 
 A simulator for calculating all the grants to which public sector employees are
 entitled upon retirement, intended to be used by the human resources, payroll and finance departments in the local
