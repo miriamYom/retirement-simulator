@@ -4,11 +4,9 @@ import {
     MDBModal,
     MDBModalDialog,
     MDBModalContent,
-    MDBModalHeader,
-    MDBModalTitle,
     MDBModalBody,
-    MDBModalFooter,
-} from 'mdb-react-ui-kit';
+}
+    from 'mdb-react-ui-kit';
 import './style/Login.css';
 import img1 from "../img/connect.png";
 import { useNavigate } from "react-router-dom";
@@ -18,10 +16,10 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from "yup";
 import { userLogin } from "../redux/actions/userAction";
 import { useSelector, useDispatch } from "react-redux";
-import { setTokens} from "./TokenService";
+import { setTokens } from "./TokenService";
 import { userUrl } from './endpoints';
 function Login() {
-    const userUrl = "http://localhost:5170/user/"
+    const url = "http://localhost:5170/user/";
     const dispatch = useDispatch();
     let user = useSelector((state) => state.userReducer);
     const navigate = useNavigate();
@@ -49,7 +47,7 @@ function Login() {
 
 
     const onSubmitHandler = (data) => {
-        axios.post(userUrl+'Login?email=' + data.email, '"' + data.password + '"', {
+        axios.post(url + 'Login?email=' + data.email, '"' + data.password + '"', {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -67,12 +65,12 @@ function Login() {
                         }
                     }
                     else {
-                        {document.getElementById('errorMassege').hidden = false}
+                        { document.getElementById('errorMassege').hidden = false }
                     }
                 }
             })
             .catch(error => {
-                {document.getElementById('errorMassege').hidden = false}
+                { document.getElementById('errorMassege').hidden = false }
             })
     }
 
