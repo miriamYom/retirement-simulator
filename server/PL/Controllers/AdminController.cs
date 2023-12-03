@@ -15,16 +15,10 @@ namespace UI.Controllers
     public class AdminController : ControllerBase
     {
         private readonly IUserServiceBL userServiceBL;
-        //private readonly IPensionFactory pensionFactory;
         private readonly IJWTManagerRepository jWTManager;
         private readonly ITokenServiceBL tokenService;
 
-        //public AdminController(IUserServiceBL userServiceBL, IJWTManagerRepository jWTManager, ITokenServiceBL tokenService) : base(userServiceBL, jWTManager, tokenService)
-        //{
-        //    this.userServiceBL = userServiceBL;
-        //    this.jWTManager = jWTManager;
-        //    this.tokenService = tokenService;
-        //}
+
 
         public AdminController(IUserServiceBL userServiceBL, IJWTManagerRepository jWTManager, ITokenServiceBL tokenService) 
         {
@@ -33,37 +27,9 @@ namespace UI.Controllers
             this.tokenService = tokenService;
         }
 
+    
 
-        [AllowAnonymous]
-        [HttpPost]
-        [Route("authenticate")]
-        public async Task<IActionResult> AuthenticateAsync(string email, [FromBody] string pass)
-        {
-            var validAdmin = jWTManager.UserAuthenticate(email, pass);
-
-            if (validAdmin == null)
-            {
-                return Unauthorized("Incorrect username or password!");
-            }
-
-            var token = jWTManager.GenerateAdminToken(validAdmin);
-
-            if (token == null)
-            {
-                return Unauthorized("Invalid Attempt!");
-            }
-
-            // saving refresh token to the db
-            UserRefreshTokenDTO obj = new UserRefreshTokenDTO
-            {
-                RefreshToken = token.RefreshToken,
-                UserId = validAdmin.Id,
-                Email = email,
-            };
-
-            await tokenService.AddUserRefreshTokens(obj);
-            return Ok(new { token = token, user = validAdmin });
-        }
+        [HttpGet("GetAll")]
 
         [Authorize(Roles = "Admin")]
         //[AllowAnonymous]
@@ -74,7 +40,6 @@ namespace UI.Controllers
         }
 
 
-        [AllowAnonymous]
         [HttpPost("GetDetails")]
         public UserDTO GetDetails(UserDTO user)
         {
@@ -82,7 +47,7 @@ namespace UI.Controllers
         }
 
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpPost("CreateUser")]
         public bool CreateUser([FromBody] UserDTO user)
         {
@@ -97,14 +62,14 @@ namespace UI.Controllers
         }
 
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpDelete("DeleteUser")]
         public bool DeleteUser(UserDTO user)
         {
             return userServiceBL.DeleteAsync(user).Result;
         }
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpPut("Update")]
         public bool UpdateUser(params UserDTO[] user)
         {

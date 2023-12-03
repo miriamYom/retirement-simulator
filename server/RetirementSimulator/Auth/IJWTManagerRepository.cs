@@ -6,8 +6,6 @@ namespace BL.Auth;
 public interface IJWTManagerRepository
 {
     UserDTO UserAuthenticate(string email, string password);
-    //Tokens GenerateToken(string userName);
-    //Tokens GenerateRefreshToken(string userName);
     ClaimsPrincipal GetPrincipalFromExpiredToken(string token);
     //--------------------------------------------------
     Tokens GenerateUserToken(string email);

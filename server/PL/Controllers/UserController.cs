@@ -41,7 +41,7 @@ public class UserController : ControllerBase
         try
         {
             var o = employee;
-           return pensionFactory.Create(pensionType, employee);
+            return pensionFactory.Create(pensionType, employee);
         }
         catch (InvalidParameterException ex)
         {
@@ -54,14 +54,23 @@ public class UserController : ControllerBase
     [Route("login")]
     public async Task<IActionResult> LoginWithAuthenticateAsync(string email, [FromBody] string pass)
     {
+        Tokens token;
         var validUser = jWTManager.UserAuthenticate(email, pass);
-
         if (validUser == null)
         {
             return Unauthorized("Incorrect username or password!");
         }
+        if (validUser.Role.ToLower() == "admin")
+        {
+            token = jWTManager.GenerateAdminToken(validUser);
 
-        var token = jWTManager.GenerateUserToken(email);
+        }
+        else
+        {
+            token = jWTManager.GenerateUserToken(email);
+        }
+
+
 
         if (token == null)
         {
@@ -117,7 +126,7 @@ public class UserController : ControllerBase
         return Ok(newJwtToken);
     }
 
-    
+
 
 }
 
