@@ -13,14 +13,16 @@ public class Employee
        
     }
 
-    public virtual object Clculates()
+    public virtual object Calculates()
     {
+        PensionService.CurrentEmployee = this;
+
         bool flag = false;
         string json = "{";
-        object[] param = { this };
+        //object[] param = { this };
         foreach (var methodInfo in typeof(PensionService).GetMethods(BindingFlags.Static | BindingFlags.Public))
         {
-            var result = methodInfo.Invoke(null, param);
+            var result = methodInfo.Invoke(null, null);
             if (!flag)
             {
                 flag = true;

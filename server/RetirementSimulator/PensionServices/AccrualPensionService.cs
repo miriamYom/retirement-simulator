@@ -4,7 +4,7 @@ using System.Text.Json;
 
 namespace BL.PensionServices;
 
-internal  class AccrualPensionService : PensionService
+internal class AccrualPensionService : PensionService
 {
     public AccrualPensionService()
     {
@@ -19,13 +19,13 @@ internal  class AccrualPensionService : PensionService
     /// סכום הקצבה יהיה: משכורת אחרונה * 2% לכל שנת עבודה * חלקיות המשרה
     /// </summary>
     /// <returns></returns>
-    public static Dictionary<string, double> CalculatingAllowance(Employee employee)
+    public static Dictionary<string, double> CalculatingAllowance()
     {
         //double lastSalary = employee.PensionSalaryFor100PercentPosition;
         double lastSalary = 12;
         //double partTime = employee.AverasionSalaryFor100PercentPosition;
         double partTime = 12;
-        int years = employee.RetirementDate.Year - employee.StartWorkDate.Year;
+        int years = CurrentEmployee.RetirementDate.Year - CurrentEmployee.StartWorkDate.Year;
         Dictionary<string, double> dict = new Dictionary<string, double>(); ;
         dict["FullPensionPercentage"] = lastSalary * partTime * 0.02 * years;
         dict["AveragePartiality"] = lastSalary * partTime * 0.02 * years;
@@ -41,34 +41,34 @@ internal  class AccrualPensionService : PensionService
     /// </summary>
     /// <param name="employee"></param>
     /// <returns></returns>
-    public static double CompensationPercentage(AccrualPensionEmployee employee)
-    {
-        int age = (int)EmployeesAgeAtRetirement(employee);
-        double percentage;
-        if (employee.Reason == Enums.RetirementReason.death || employee.Reason == Enums.RetirementReason.retirementForHealthReasons)
-        {
-            percentage = 1; //100% compensation
-        }
-        else if (IsEntitled(employee)) // if eligible in terms of age and seniority 
-        {
-            CompensationPercentagesForSickness compensationPercentages = new(); //singleton
-            percentage = compensationPercentages.AgesAndPercentsAccrualPension[age] / 100;
-        }
-        else if(age >= 57)
-        {
-            percentage = 1; //100% compensation
-        }
-        else percentage = 0;
-        return percentage;
+    //    public static double CompensationPercentage(AccrualPensionEmployee employee)
+    //    {
+    //        int age = (int)EmployeesAgeAtRetirement(employee);
+    //        double percentage;
+    //        if (employee.Reason == Enums.RetirementReason.death || employee.Reason == Enums.RetirementReason.retirementForHealthReasons)
+    //        {
+    //            percentage = 1; //100% compensation
+    //        }
+    //        else if (IsEntitled(employee)) // if eligible in terms of age and seniority 
+    //        {
+    //            CompensationPercentagesForSickness compensationPercentages = new(); //singleton
+    //            percentage = compensationPercentages.AgesAndPercentsAccrualPension[age] / 100;
+    //        }
+    //        else if(age >= 57)
+    //        {
+    //            percentage = 1; //100% compensation
+    //        }
+    //        else percentage = 0;
+    //        return percentage;
 
-    }
-    /// <summary>
-    /// סכום לתשלום - פיצוי ביגן ימי מחלה שלא נוצלו
-    /// </summary>
-    /// <param name="employee"></param>
-    /// <returns></returns>
-    public static double AmountToBePaidCompensationForUnusedSickDays(AccrualPensionEmployee employee)
-    {
-        return ADaysWorthOfSickness(employee) * DaysToMaturity(employee) * CompensationPercentage(employee);
-    }
+    //    }
+    //    /// <summary>
+    //    /// סכום לתשלום - פיצוי ביגן ימי מחלה שלא נוצלו
+    //    /// </summary>
+    //    /// <param name="employee"></param>
+    //    /// <returns></returns>
+    //    public static double AmountToBePaidCompensationForUnusedSickDays(AccrualPensionEmployee employee)
+    //    {
+    //        return ADaysWorthOfSickness(employee) * DaysToMaturity(employee) * CompensationPercentage(employee);
+    //    }
 }

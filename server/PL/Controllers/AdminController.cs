@@ -65,8 +65,8 @@ namespace UI.Controllers
             return Ok(new { token = token, user = validAdmin });
         }
 
-
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
+        //[AllowAnonymous]
         [HttpGet("GetAll")]
         public List<UserDTO> GetAll()
         {

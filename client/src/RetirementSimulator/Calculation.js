@@ -8,8 +8,8 @@ function Calculation() {
     const dispatch = useDispatch();
     let [result, setResult] = useState({});
     let employeeDetails = useSelector((state) => state.employeeReducer);
-    let [pensionType, setpensionType] = useState("BudgetPension");
-    const userUrl = "http://localhost:5170/user"
+    let [pensionType, setpensionType] = useState("AccrualPension");
+    const userUrl = "http://localhost:5170/user/"
 
     useEffect(() => {
         dispatch(removePensionType());
