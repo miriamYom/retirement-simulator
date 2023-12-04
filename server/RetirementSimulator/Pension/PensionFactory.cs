@@ -28,6 +28,6 @@ public class PensionFactory : IPensionFactory
             default:
                 throw new InvalidParameterException();
         }
-        return pensionEmployee.Clculates();
+        return pensionEmployee.Calculates();
     }
 }

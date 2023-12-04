@@ -31,6 +31,9 @@ namespace UI.Controllers
 
         [HttpGet("GetAll")]
 
+        [Authorize(Roles = "Admin")]
+        //[AllowAnonymous]
+        [HttpGet("GetAll")]
         public List<UserDTO> GetAll()
         {
             return userServiceBL.GetAllAsync().Result;
