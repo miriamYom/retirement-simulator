@@ -18,20 +18,20 @@ public class UserController : ControllerBase
     private readonly IJWTManagerRepository jWTManager;
     private readonly ITokenServiceBL tokenService;
 
-    //public UsersController(/*IUserServiceBL userServiceBL,*/ IPensionFactory pensionFactory, IJWTManagerRepository jWTManager, ITokenServiceBL tokenService)
-    //{
-    //    //this.userServiceBL = userServiceBL;
-    //    this.pensionFactory = pensionFactory;
-    //    this.jWTManager = jWTManager;
-    //    this.tokenService = tokenService;
-    //}
-
-    public UserController(IUserServiceBL userServiceBL, IJWTManagerRepository jWTManager, ITokenServiceBL tokenService)
+    public UserController(IUserServiceBL userServiceBL, IPensionFactory pensionFactory, IJWTManagerRepository jWTManager, ITokenServiceBL tokenService)
     {
         this.userServiceBL = userServiceBL;
+        this.pensionFactory = pensionFactory;
         this.jWTManager = jWTManager;
         this.tokenService = tokenService;
     }
+
+    //public UserController(IUserServiceBL userServiceBL, IJWTManagerRepository jWTManager, ITokenServiceBL tokenService)
+    //{
+    //    this.userServiceBL = userServiceBL;
+    //    this.jWTManager = jWTManager;
+    //    this.tokenService = tokenService;
+    //}
 
 
 

@@ -13,7 +13,6 @@ public class UserServiceDL : IUserService
     {
         if (user == null)
         {
-            // throw new Exception()
             return false;
         }
         try

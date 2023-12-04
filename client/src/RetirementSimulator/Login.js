@@ -6,7 +6,7 @@ import {
     MDBModalContent,
     MDBModalBody,
 }
-    from 'mdb-react-ui-kit';
+from 'mdb-react-ui-kit';
 import './style/Login.css';
 import img1 from "../img/connect.png";
 import { useNavigate } from "react-router-dom";
