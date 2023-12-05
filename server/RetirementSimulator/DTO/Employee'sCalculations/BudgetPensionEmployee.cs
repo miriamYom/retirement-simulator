@@ -10,27 +10,27 @@ public class BudgetPensionEmployee : Employee
     {
 
     }
-    public override string Calculates()
-    {
-        bool flag = false;
-        string json = "{";
-        object[] param = { this };
-        foreach (var methodInfo in typeof(BudgetPensionService).GetMethods(BindingFlags.Static | BindingFlags.Public))
-        {
-            var result = methodInfo.Invoke(null, param);
-            if (!flag)
-            {
-                flag = true;
-                json += $" '{methodInfo.Name}' : '{result}'";
+    //public override string Calculates()
+    //{
+    //    bool flag = false;
+    //    string json = "{";
+    //    object[] param = { this };
+    //    foreach (var methodInfo in typeof(BudgetPensionService).GetMethods(BindingFlags.Static | BindingFlags.Public))
+    //    {
+    //        var result = methodInfo.Invoke(null, param);
+    //        if (!flag)
+    //        {
+    //            flag = true;
+    //            json += $" '{methodInfo.Name}' : '{result}'";
 
-            }
-            else json += $" ,'{methodInfo.Name}' : '{result}'";
-        }
-        json += "}";
-        return json.Replace("'", "\"");
-    }
-    /// <summary>
-    /// משכורת קובעת בגיל 60
+    //        }
+    //        else json += $" ,'{methodInfo.Name}' : '{result}'";
+    //    }
+    //    json += "}";
+    //    return json.Replace("'", "\"");
+    //}
+    ///// <summary>
+    ///// משכורת קובעת בגיל 60
     /// Determined salary
     /// </summary>
     public double SalaryDeterminesAtAge60 { get; set; }

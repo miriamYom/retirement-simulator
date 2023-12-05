@@ -8,33 +8,10 @@ namespace BL.DTO;
 
 public class Employee
 {
-    public Employee()
-    {
-       
-    }
-
-    public virtual object Calculates()
-    {
-        PensionService.CurrentEmployee = this;
-
-        bool flag = false;
-        string json = "{";
-        //object[] param = { this };
-        foreach (var methodInfo in typeof(PensionService).GetMethods(BindingFlags.Static | BindingFlags.Public))
-        {
-            var result = methodInfo.Invoke(null, null);
-            if (!flag)
-            {
-                flag = true;
-                json += $" '{methodInfo.Name}' : '{result}'";
-            }
-            else json += $" ,'{methodInfo.Name}' : '{result}'";
-        }
-        json += "}";
-        return json.Replace("'", "\"");
-    }
     public string Name { get; set; }
     public int ID { get; set; }
+    public PensionService PensionType { get; set; }
+
     public DateTime BirthDate { get; set; }
     public DateTime StartWorkDate { get; set; }
     /// <summary>

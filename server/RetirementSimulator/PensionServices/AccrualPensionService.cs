@@ -6,10 +6,6 @@ namespace BL.PensionServices;
 
 internal class AccrualPensionService : PensionService
 {
-    public AccrualPensionService()
-    {
-    }
-
 
     //public void SetEmployee(string employee)
     //{
@@ -23,9 +19,9 @@ internal class AccrualPensionService : PensionService
     /// <returns></returns>
     public static Dictionary<string, double> CalculatingAllowance()
     {
-        //double lastSalary = employee.PensionSalaryFor100PercentPosition;
+        //double lastSalary = CurrentEmployee.PensionSalaryFor100PercentPosition;
         double lastSalary = 12;
-        //double partTime = employee.AverasionSalaryFor100PercentPosition;
+        //double partTime = CurrentEmployee.AverasionSalaryFor100PercentPosition;
         double partTime = 12;
         int years = CurrentEmployee.RetirementDate.Year - CurrentEmployee.StartWorkDate.Year;
         Dictionary<string, double> dict = new Dictionary<string, double>(); ;
