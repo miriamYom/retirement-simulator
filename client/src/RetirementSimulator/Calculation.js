@@ -8,17 +8,16 @@ function Calculation() {
     const dispatch = useDispatch();
     let [result, setResult] = useState({});
     let employeeDetails = useSelector((state) => state.employeeReducer);
-    let [pensionType, setpensionType] = useState("AccrualPension");
     const userUrl = "http://localhost:5170/user/"
 
     useEffect(() => {
-        dispatch(removePensionType());
-        console.log(pensionType);
+        // dispatch(removePensionType());
+        console.log(employeeDetails.pensionType);
         console.log(employeeDetails);
         var config = {
             headers: { Authorization: `Bearer ${getToken()}` }
         };
-        axios.post(`${userUrl}GetPensionCalculates?pensionType=${pensionType}`,
+        axios.post(`${userUrl}GetPensionCalculates?pensionType=${employeeDetails.pensionType}`,
             employeeDetails, config)
             .then(response => setResult((response.data)))
             .catch(error => console.error('There was an error!\n', error))
