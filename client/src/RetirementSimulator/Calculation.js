@@ -12,9 +12,11 @@ function Calculation() {
     const userUrl = "http://localhost:5170/user/"
 
     useEffect(() => {
-        dispatch(removePensionType());
-        console.log(pensionType);
-        console.log(employeeDetails);
+        // dispatch(removePensionType());
+        console.log("default oension type ",pensionType);
+        console.log("employeeDetails ",employeeDetails);
+        console.log("type  ",employeeDetails.pensionType);
+        
         var config = {
             headers: { Authorization: `Bearer ${getToken()}` }
         };

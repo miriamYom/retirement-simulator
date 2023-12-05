@@ -27,7 +27,6 @@ public class Employee
             {
                 flag = true;
                 json += $" '{methodInfo.Name}' : '{result}'";
-
             }
             else json += $" ,'{methodInfo.Name}' : '{result}'";
         }
